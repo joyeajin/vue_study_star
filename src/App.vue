@@ -9,7 +9,7 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container :instaDatas="instaDatas" />
+  <Container :instaDatas="instaDatas" :step="step" />
 
   <button @click="more">더보기</button>
 
@@ -19,6 +19,13 @@
       <label for="file" class="input-plus">+</label>
     </ul>
   </div>
+
+  <!-- <div v-if="step == 0">내용0</div>
+  <div v-if="step == 1">내용1</div>
+  <div v-if="step == 2">내용2</div>
+  <button @click="step = 0">버튼0</button>
+  <button @click="step = 1">버튼1</button>
+  <button @click="step = 2">버튼2</button> -->
 </template>
 
 <script>
@@ -32,6 +39,7 @@ export default {
     return {
       instaDatas: data,
       count: 0,
+      step: 2,
     };
   },
   components: {
@@ -39,11 +47,11 @@ export default {
   },
   methods: {
     more() {
-      console.log(this.count);
+      // console.log(this.count);
       axios
         .get(`https://codingapple1.github.io/vue/more${this.count}.json`)
         .then((result) => {
-          console.log(result.data);
+          // console.log(result.data);
           this.instaDatas.push(result.data);
           this.count++;
         });
