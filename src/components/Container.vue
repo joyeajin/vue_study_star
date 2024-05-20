@@ -7,7 +7,11 @@
     /> -->
     <Post :instaDatas="instaDatas" v-if="step == 0" />
 
-    <div class="upload-image" v-if="step == 1"></div>
+    <div
+      class="upload-image"
+      v-if="step == 1"
+      :style="{ backgroundImage: `url(${imageUrl})` }"
+    ></div>
     <div class="filters" v-if="step == 1">
       <div class="filter-1"></div>
       <div class="filter-1"></div>
@@ -17,9 +21,18 @@
     </div>
 
     <!-- 글작성페이지 -->
-    <div class="upload-image" v-if="step == 2"></div>
+    <div
+      class="upload-image"
+      v-if="step == 2"
+      :style="{ backgroundImage: `url(${imageUrl})` }"
+    ></div>
     <div class="write" v-if="step == 2">
-      <textarea class="write-box">write!</textarea>
+      <textarea
+        @input="$emit('writeContent', $event.target.value)"
+        class="write-box"
+      >
+write!</textarea
+      >
     </div>
   </div>
 </template>
@@ -34,6 +47,7 @@ export default {
   props: {
     instaDatas: Array,
     step: Number,
+    imageUrl: String,
   },
 };
 </script>

@@ -4,18 +4,24 @@
       <li>Cancel</li>
     </ul>
     <ul class="header-button-right">
-      <li>Next</li>
+      <li v-if="step == 1" @click="step++">Next</li>
+      <li v-if="step == 2" @click="publish">발행</li>
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container :instaDatas="instaDatas" :step="step" />
+  <Container
+    @writeContent="writeContent = $event"
+    :instaDatas="instaDatas"
+    :step="step"
+    :imageUrl="imageUrl"
+  />
 
   <button @click="more">더보기</button>
 
   <div class="footer">
     <ul class="footer-button-plus">
-      <input type="file" id="file" class="inputfile" />
+      <input @change="upload" type="file" id="file" class="inputfile" />
       <label for="file" class="input-plus">+</label>
     </ul>
   </div>
@@ -39,13 +45,29 @@ export default {
     return {
       instaDatas: data,
       count: 0,
-      step: 2,
+      step: 0,
+      imageUrl: "",
+      writeContent: "",
     };
   },
   components: {
     Container: Container,
   },
   methods: {
+    publish() {
+      var myData = {
+        name: "Kim Hyun",
+        userImage: "https://picsum.photos/100?random=3",
+        postImage: this.imageUrl,
+        likes: 36,
+        date: "May 15",
+        liked: false,
+        content: this.writeContent,
+        filter: "perpetua",
+      };
+      this.instaDatas.unshift(myData);
+      this.step = 0;
+    },
     more() {
       // console.log(this.count);
       axios
@@ -55,6 +77,14 @@ export default {
           this.instaDatas.push(result.data);
           this.count++;
         });
+    },
+    upload(e) {
+      let file = e.target.files;
+      console.log(file[0]);
+      let url = URL.createObjectURL(file[0]);
+      console.log(url);
+      this.imageUrl = url;
+      this.step++;
     },
   },
 };
