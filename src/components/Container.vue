@@ -13,11 +13,12 @@
       :style="{ backgroundImage: `url(${imageUrl})` }"
     ></div>
     <div class="filters" v-if="step == 1">
-      <div class="filter-1"></div>
-      <div class="filter-1"></div>
-      <div class="filter-1"></div>
-      <div class="filter-1"></div>
-      <div class="filter-1"></div>
+      <FilterBox
+        v-for="(filter, i) in filters"
+        :key="i"
+        :imageUrl="imageUrl"
+        :filter="filter"
+      ></FilterBox>
     </div>
 
     <!-- 글작성페이지 -->
@@ -38,11 +39,45 @@ write!</textarea
 </template>
 <script>
 import Post from "./Post.vue";
+import FilterBox from "./FilterBox.vue";
 
 export default {
   name: "Container-a",
+  data() {
+    return {
+      filters: [
+        "aden",
+        "_1977",
+        "brannan",
+        "brooklyn",
+        "clarendon",
+        "earlybird",
+        "gingham",
+        "hudson",
+        "inkwell",
+        "kelvin",
+        "lark",
+        "lofi",
+        "maven",
+        "mayfair",
+        "moon",
+        "nashville",
+        "perpetua",
+        "reyes",
+        "rise",
+        "slumber",
+        "stinson",
+        "toaster",
+        "valencia",
+        "walden",
+        "willow",
+        "xpro2",
+      ],
+    };
+  },
   components: {
     Post: Post,
+    FilterBox: FilterBox,
   },
   props: {
     instaDatas: Array,
