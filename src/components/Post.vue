@@ -28,13 +28,13 @@
       <span class="profile-name">{{ instaDatas.name }}</span>
     </div>
     <div
-      @click="$store.commit('changeLike')"
+      @click="$store.commit('changeLike', index)"
       :class="instaDatas.filter"
       class="post-body"
       :style="{ backgroundImage: `url(${instaDatas.postImage})` }"
     ></div>
     <div class="post-content">
-      <p>{{ $store.state.likes }} Likes</p>
+      <p>{{ $store.state.likes[index] }} Likes</p>
       <p>
         <strong>{{ instaDatas.name }}</strong> {{ instaDatas.content }}
       </p>
@@ -47,6 +47,7 @@ export default {
   name: "Post-a",
   props: {
     instaDatas: Object,
+    index: Number,
   },
 };
 </script>

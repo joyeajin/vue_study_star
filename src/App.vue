@@ -10,10 +10,10 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <h4>안녕 {{ $store.state.name }}</h4>
-  <h5>나이는 {{ $store.state.age }}</h5>
+  <h4>안녕 {{ 내이름 }}</h4>
+  <h5>나이는 {{ age }}</h5>
   <button @click="$store.commit('changeName')">이름바꾸기 버튼</button>
-  <button @click="$store.commit('addAge', 10)">나이바꾸기 버튼</button>
+  <button @click="addAge(10)">나이바꾸기 버튼</button>
 
   <Container
     @writeContent="writeContent = $event"
@@ -44,6 +44,7 @@
 import Container from "./components/Container.vue";
 import data from "./assets/instaData.js";
 import axios from "axios";
+import { mapMutations, mapState } from "vuex";
 
 export default {
   name: "App",
@@ -55,6 +56,7 @@ export default {
       imageUrl: "",
       writeContent: "",
       selectedFilter: "",
+      counter: 0,
     };
   },
   mounted() {
@@ -65,7 +67,12 @@ export default {
   components: {
     Container: Container,
   },
+  computed: {
+    ...mapState(["name", "age", "likes"]),
+    ...mapState({ 내이름: "name" }),
+  },
   methods: {
+    ...mapMutations(["setMore", "changeLike", "addAge"]),
     publish() {
       var myData = {
         name: "Kim Hyun",

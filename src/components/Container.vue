@@ -5,6 +5,7 @@
         :instaDatas="instaDatas[i]"
         v-for="(instaData, i) in instaDatas"
         :key="i"
+        :index="i"
       />
     </div>
     <!-- <Post :instaDatas="instaDatas" v-if="step == 0" /> -->

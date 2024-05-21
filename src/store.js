@@ -7,7 +7,7 @@ const store = createStore({
     return {
       name: "kim",
       age: 20,
-      likes: 30,
+      likes: [30, 30, 30, 30, 30],
       clickLike: false,
       instaData: instaData,
       moreNum: 0,
@@ -20,12 +20,12 @@ const store = createStore({
     addAge(state, payload) {
       state.age += payload;
     },
-    changeLike(state) {
+    changeLike(state, value) {
       if (state.clickLike == false) {
-        state.likes++;
+        state.likes[value]++;
         state.clickLike = true;
       } else {
-        state.likes--;
+        state.likes[value]--;
         state.clickLike = false;
       }
     },
