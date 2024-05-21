@@ -22,7 +22,8 @@
     :imageUrl="imageUrl"
   />
 
-  <button @click="more" v-if="step == 0">더보기</button>
+  <button @click="more" v-if="step == 0">더보기(methods로 만듦)</button>
+  <button @click="$store.dispatch('getMore')">더보기(store로 만듦)</button>
 
   <div class="footer" v-if="step == 0">
     <ul class="footer-button-plus">
