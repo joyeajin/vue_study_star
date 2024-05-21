@@ -10,7 +10,7 @@
     <!-- <Post :instaDatas="instaDatas" v-if="step == 0" /> -->
 
     <div
-      :class="selectFilter"
+      :class="selectedFilter"
       class="upload-image"
       v-if="step == 1"
       :style="{ backgroundImage: `url(${imageUrl})` }"
@@ -30,7 +30,7 @@
 
     <!-- 글작성페이지 -->
     <div
-      :class="selectFilter"
+      :class="selectedFilter"
       class="upload-image"
       v-if="step == 2"
       :style="{ backgroundImage: `url(${imageUrl})` }"
@@ -81,13 +81,12 @@ export default {
         "willow",
         "xpro2",
       ],
-      selectFilter: "",
+      selectedFilter: "",
     };
   },
   mounted() {
     this.emitter.on("clickFilterBox", (a) => {
-      console.log(a);
-      this.selectFilter = a;
+      this.selectedFilter = a;
     });
   },
   components: {

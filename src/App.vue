@@ -10,6 +10,11 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
+  <h4>안녕 {{ $store.state.name }}</h4>
+  <h5>나이는 {{ $store.state.age }}</h5>
+  <button @click="$store.commit('changeName')">이름바꾸기 버튼</button>
+  <button @click="$store.commit('addAge', 10)">나이바꾸기 버튼</button>
+
   <Container
     @writeContent="writeContent = $event"
     :instaDatas="instaDatas"
@@ -48,13 +53,12 @@ export default {
       step: 0,
       imageUrl: "",
       writeContent: "",
-      selectFilter: "",
+      selectedFilter: "",
     };
   },
   mounted() {
     this.emitter.on("clickFilterBox", (a) => {
-      console.log(a);
-      this.selectFilter = a;
+      this.selectedFilter = a;
     });
   },
   components: {
@@ -70,7 +74,7 @@ export default {
         date: "May 15",
         liked: false,
         content: this.writeContent,
-        filter: this.selectFilter,
+        filter: this.selectedFilter,
       };
       this.instaDatas.unshift(myData);
       this.step = 0;
