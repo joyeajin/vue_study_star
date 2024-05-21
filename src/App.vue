@@ -17,9 +17,9 @@
     :imageUrl="imageUrl"
   />
 
-  <button @click="more">더보기</button>
+  <button @click="more" v-if="step == 0">더보기</button>
 
-  <div class="footer">
+  <div class="footer" v-if="step == 0">
     <ul class="footer-button-plus">
       <input @change="upload" type="file" id="file" class="inputfile" />
       <label for="file" class="input-plus">+</label>
@@ -48,7 +48,14 @@ export default {
       step: 0,
       imageUrl: "",
       writeContent: "",
+      selectFilter: "",
     };
+  },
+  mounted() {
+    this.emitter.on("clickFilterBox", (a) => {
+      console.log(a);
+      this.selectFilter = a;
+    });
   },
   components: {
     Container: Container,
@@ -63,7 +70,7 @@ export default {
         date: "May 15",
         liked: false,
         content: this.writeContent,
-        filter: "perpetua",
+        filter: this.selectFilter,
       };
       this.instaDatas.unshift(myData);
       this.step = 0;

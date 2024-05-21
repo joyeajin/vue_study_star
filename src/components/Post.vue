@@ -28,6 +28,7 @@
       <span class="profile-name">{{ instaDatas.name }}</span>
     </div>
     <div
+      :class="instaDatas.filter"
       class="post-body"
       :style="{ backgroundImage: `url(${instaDatas.postImage})` }"
     ></div>
