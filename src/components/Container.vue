@@ -1,11 +1,13 @@
 <template lang="">
   <div>
-    <!-- <Post
-      :instaDatas="instaDatas[i]"
-      v-for="(instaData, i) in instaDatas"
-      :key="i"
-    /> -->
-    <Post :instaDatas="instaDatas" v-if="step == 0" />
+    <div v-if="step == 0">
+      <Post
+        :instaDatas="instaDatas[i]"
+        v-for="(instaData, i) in instaDatas"
+        :key="i"
+      />
+    </div>
+    <!-- <Post :instaDatas="instaDatas" v-if="step == 0" /> -->
 
     <div
       class="upload-image"
@@ -14,11 +16,15 @@
     ></div>
     <div class="filters" v-if="step == 1">
       <FilterBox
-        v-for="(filter, i) in filters"
-        :key="i"
+        v-for="filter in filters"
+        :key="filter"
         :imageUrl="imageUrl"
         :filter="filter"
-      ></FilterBox>
+      >
+        <span>
+          {{ filter }}
+        </span>
+      </FilterBox>
     </div>
 
     <!-- 글작성페이지 -->

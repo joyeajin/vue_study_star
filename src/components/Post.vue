@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="post" v-for="(instaData, i) in instaDatas" :key="i">
+  <!-- <div class="post" v-for="(instaData, i) in instaDatas" :key="i">
     <div class="post-header">
       <div
         class="profile"
@@ -17,6 +17,26 @@
         <strong>{{ instaDatas[i].name }}</strong> {{ instaDatas[i].content }}
       </p>
       <p class="date">{{ instaDatas[i].date }}</p>
+    </div>
+  </div> -->
+  <div class="post">
+    <div class="post-header">
+      <div
+        class="profile"
+        :style="{ backgroundImage: `url(${instaDatas.userImage})` }"
+      ></div>
+      <span class="profile-name">{{ instaDatas.name }}</span>
+    </div>
+    <div
+      class="post-body"
+      :style="{ backgroundImage: `url(${instaDatas.postImage})` }"
+    ></div>
+    <div class="post-content">
+      <p>{{ instaDatas.likes }} Likes</p>
+      <p>
+        <strong>{{ instaDatas.name }}</strong> {{ instaDatas.content }}
+      </p>
+      <p class="date">{{ instaDatas.date }}</p>
     </div>
   </div>
 </template>

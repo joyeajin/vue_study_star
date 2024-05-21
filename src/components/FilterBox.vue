@@ -3,7 +3,9 @@
   <div
     :class="filter + ' filter-item'"
     :style="`background-image:url(${imageUrl})`"
-  ></div>
+  >
+    <slot></slot>
+  </div>
 </template>
 
 <script>
@@ -23,7 +25,7 @@ export default {
   margin: 10px 10px 10px auto;
   padding: 8px;
   display: inline-block;
-  color: white;
+  color: blue;
   background-size: cover;
   background-position: center;
 }
