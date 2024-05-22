@@ -24,20 +24,22 @@ export default {
 
   setup() {
     let followers = ref([]);
-
-    function search(searchWord) {
-      let newFollowers = followers.value.filter((follower) => {
-        return follower.name.indexOf(searchWord) != -1;
-      });
-
-      followers.value = newFollowers;
-    }
+    let followersOriginal = ref([]);
 
     onMounted(() => {
       axios.get("/follower.json").then((a) => {
         followers.value = a.data;
+        followersOriginal.value = [...a.data];
       });
     });
+
+    function search(searchWord) {
+      let newFollowers = followersOriginal.value.filter((follower) => {
+        return follower.name.indexOf(searchWord) != -1;
+      });
+
+      followers.value = [...newFollowers];
+    }
 
     return { followers, search };
   },
