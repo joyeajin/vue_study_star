@@ -10,10 +10,10 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <h4>안녕 {{ 내이름 }}</h4>
+  <!-- <h4>안녕 {{ 내이름 }}</h4>
   <h5>나이는 {{ age }}</h5>
   <button @click="$store.commit('changeName')">이름바꾸기 버튼</button>
-  <button @click="addAge(10)">나이바꾸기 버튼</button>
+  <button @click="addAge(10)">나이바꾸기 버튼</button> -->
 
   <Container
     @writeContent="writeContent = $event"
@@ -23,7 +23,9 @@
   />
 
   <button @click="more" v-if="step == 0">더보기(methods로 만듦)</button>
-  <button @click="$store.dispatch('getMore')">더보기(store로 만듦)</button>
+  <button @click="$store.dispatch('getMore')" v-if="step == 0">
+    더보기(store로 만듦)
+  </button>
 
   <div class="footer" v-if="step == 0">
     <ul class="footer-button-plus">
@@ -52,7 +54,7 @@ export default {
     return {
       instaDatas: data,
       count: 0,
-      step: 0,
+      step: 3,
       imageUrl: "",
       writeContent: "",
       selectedFilter: "",
