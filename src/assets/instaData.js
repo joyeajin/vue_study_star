@@ -1,12 +1,12 @@
 export default [
   {
-    name: "Kim Hyun",
+    name: "Jo yeajin",
     userImage: "https://picsum.photos/100?random=3",
     postImage: "https://picsum.photos/600?random=3",
     likes: 36,
     date: "May 15",
     liked: false,
-    content: "오늘 무엇을 했냐면요 아무것도 안했어요 ?",
+    content: "안녕하세요 ~~~~",
     filter: "perpetua",
   },
   {
@@ -16,7 +16,7 @@ export default [
     likes: 20,
     date: "Apr 20",
     liked: false,
-    content: "흔한 자랑스타그램",
+    content: "오늘은 날씨가 흐려요",
     filter: "clarendon",
   },
   {

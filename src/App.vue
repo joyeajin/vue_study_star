@@ -54,7 +54,7 @@ export default {
     return {
       instaDatas: data,
       count: 0,
-      step: 3,
+      step: 0,
       imageUrl: "",
       writeContent: "",
       selectedFilter: "",
